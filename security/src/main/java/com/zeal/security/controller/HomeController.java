@@ -1,10 +1,8 @@
-package com.zeal.security;
+package com.zeal.security.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.net.http.HttpRequest;
 
 @RestController
 public class HomeController {
@@ -13,4 +11,6 @@ public class HomeController {
     public String greet(HttpServletRequest httpRequest){
         return "Welcome to home"+ httpRequest.getSession().getId();
     }
+
+
 }
