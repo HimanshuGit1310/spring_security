@@ -1,11 +1,15 @@
 package com.zeal.security.service;
 
+import com.zeal.security.model.UserPrinciple;
+import com.zeal.security.model.Users;
 import com.zeal.security.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
@@ -13,6 +17,11 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+        Users user = userRepo.findByUsername(username);
+        if (username == null){
+            System.out.println("User not found");
+            throw new UsernameNotFoundException("User Not Found");
+        }
+        return new UserPrinciple(user);
     }
 }

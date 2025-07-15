@@ -1,5 +1,6 @@
 package com.zeal.security.model;
 
+
 public class Student {
 
     private int id;

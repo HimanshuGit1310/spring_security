@@ -20,6 +20,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    @Autowired
+    private UserDetailsService userDetailsService;
+
     @Bean
     public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception {
 
@@ -33,27 +36,26 @@ public class SecurityConfig {
 
     }
 
-    @Bean
-    public UserDetailsService userDetailsService(){
-        UserDetails user1 = User
-                .withDefaultPasswordEncoder()
-                .username("rohit")
-                .password("hitman")
-                .roles("ADMIN")
-                .build();
+//    @Bean
+//    public UserDetailsService userDetailsService(){
+//        UserDetails user1 = User
+//                .withDefaultPasswordEncoder()
+//                .username("rohit")
+//                .password("hitman")
+//                .roles("ADMIN")
+//                .build();
+//
+//        UserDetails user2 = User
+//                .withDefaultPasswordEncoder()
+//                .username("virat")
+//                .password("cheeku")
+//                .roles("USER")
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(user1,user2);
+//    }
+//
 
-        UserDetails user2 = User
-                .withDefaultPasswordEncoder()
-                .username("virat")
-                .password("cheeku")
-                .roles("USER")
-                .build();
-
-        return new InMemoryUserDetailsManager(user1,user2);
-    }
-
-    @Autowired
-    private UserDetailsService userDetailsService;
 
     @Bean
     public AuthenticationProvider authenticationProvider(){
